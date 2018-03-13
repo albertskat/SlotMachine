@@ -16,7 +16,7 @@ def play():
     slot1=choice (slotsPossible)
     slot2=choice (slotsPossible)
     slot3=choice (slotsPossible)
-    win = ""
+    win = "Nope. Try Again."
     print("")
     if(slot1==slot2==slot3=="cherry"):
         win = "\nYou're a big winner! Nice! $500!"
