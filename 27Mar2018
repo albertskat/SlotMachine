@@ -1,0 +1,56 @@
+#
+# Slot Machine
+#
+######################################################
+
+from random import *
+import re
+
+def play(currentmoney,perpullcost):
+    slot1=choice(slotsPossible)
+    slot2=choice(slotsPossible)
+    slot3=choice(slotsPossible)
+    sassyLoss = choice(Loser)
+    win = sassyLoss
+
+    if (slot1==slot2==slot3=="cherry"):
+        win = "\nYou win "+str(perpullcost)
+        currentmoney = currentmoney + (perpullcost*10)
+    if (slot1==slot2==slot3=="crown"):
+        win = "\nYou win $50"
+        currentmoney = currentmoney + 50
+    if (slot1==slot2==slot3=="bar"):
+        win = "\nYou win $5"
+        currentmoney = currentmoney + 5
+    print(slot1+":"+slot2+":"+slot3+" "+win)
+    return currentmoney
+
+playagain = True 
+
+while (playagain): 
+    print("Welcome to the Slot Machine!")
+    numberOfTimes = input('How many times do you want to play?')
+    slotsPossible = ["bar","bar","bar","cherry","crown"]
+    Loser = ["\nNot today kid!"]
+    money = int(input ('How much money do you have to start?'))
+    perpullcost = int(input('How much do you want to gamble per pull?'))
+
+    for i in range(int(numberOfTimes)):
+        if (money > perpullcost): 
+            money = money - int(perpullcost)
+            money = int(play(money, perpullcost))
+        else:
+            print("Sorry, you're out of money!")
+            break 
+        print("You have "+str(money)+" left.")
+
+    answer = input("Do you want to play again?")
+
+    line = 'y,Y,YES,yes,Yes'
+    if (answer in line):
+        playagain = True
+    else:
+        playagain = False
+
+print("See you next time!")
+exit 
